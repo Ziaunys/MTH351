@@ -1,0 +1,108 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{amsmath} % just math
+\usepackage{amssymb} % allow blackboard bold (aka N,R,Q sets)
+\usepackage{ulem}
+\usepackage{graphicx}
+\usepackage{float}
+\linespread{1.6}  % double spaces lines
+\usepackage[left=1in,top=1in,right=1in,bottom=1in,nohead]{geometry}
+\setcounter{section}{2}
+\begin{document}
+\begin{flushright}
+\end{flushright}
+\begin{flushleft}
+\textbf{Eric Zounes} \\
+\today \\ 
+Sec 2.1: 1 a, c, d, 3, 4*, 7 \\
+Sec 2.2: 1 a, c, d, 5e*, 6b, 11 \\
+Sec 2.3: 4, 6, 11* \\
+Sec 2.4: 4* \\
+\end{flushleft}
+\subsection{Floating-Point Numbers} 
+\begin{enumerate} 
+	\item[1.] Using MATLAB and proceeding as in the example of (2.6) - (2.7), find the binary double precision IEEE floating-point expressions for the following numbers:
+	\begin{enumerate} 
+		\item 8 = 0100 0000 0010 0000 ... 0000 
+		\item 1.5 = 0011 1111 1111 1000 0000 ... 0000 
+		\item 0.5 = 0011 1111 1110 0000 ... 0000 
+	\end{enumerate} 
+	\item[3.] Write a program in the language of your choice to implement the following algorithm (given in MATLAB). Run it on one or more computers to which you have acess. Comment on your result. 
+	\begin{verbatim}
+	power = 1.0;
+	b = 1.0
+	while b ~= 0.0
+	power = power/2
+	\end{verbatim} \\
+	If this problem is computed with the Python programming language, then it will continue to run until the process runs out of memory. This is due to Python's big num type which supports arbitrary precision. \\ 
+
+	\item[4.] Predict the out put of the following section of code if it is run on a binarycomputer that uses chopping. More precisely, estimate the number of times the programmer probably intended for this loop to be executed; and state whether this intended behavior is what actually occurs. Would the outcome be any different if the statment "X = X + H" was replaced by "X = I * H"?
+	\begin{verbatim} 
+	I = 0 
+	X = 0.0
+	H = 0.1
+	WHILE X < 1.0
+		I = I + 1
+		X = X + H 
+		disp([I,X]) 
+	end
+	\end{verbatim} \\
+	With the first expression we obtain $I = 11$ and $X = 1.1$ at the end of the loop. 
+	For the second term we obtain $I = 10$ and $X = 1$. The first expression does not terminate at the 10th term because it does not satisfy the terminating condition.
+	The second expression can compute $X$ more accurately due to computing new values of $X$ for each iteration. Using previous values of $X$ will compound rounding and chopping error. \\ 
+	\item[7.] Let $x > 0$ satisfy (2.2). Consider a computer using a positive binary floating-point representation with n bits of precision in the significand. Assume that rounding is used in going from a number x outside the computer to its floating-point approximation fl(x) inside the computer. 
+	\begin{enumerate}
+		\item Show that $-2^{e - n} \leq x - fl(x) \leq 2^{e - n}$ \\
+				The error will fall in this range based on the amount of precision in $e -n$.
+		\item Show that $x \geq 2^{e}$, and use this to show $\frac{|x - fl(x)|}{x} \leq 2^{-n}$ 
+		\item Let $\frac{x - fl(x)}{x} = -e$, and then solve for fl(x). What are the bounds on e? (This result extends to $t < 0$, with the assumption of $x > 0$ being used to simplify the algebra.) 
+	\end{enumerate} 
+
+\end{enumerate} 
+\subsection{Errors: Definitions, Sources, and Examples} 
+\begin{enumerate} 
+	\item Calculate the error, relative error, and number of significant digits in the following approximations $x_{A} \approx x_{T}$: 
+	\begin{enumerate} 
+		\item $x_{T} = 28.54, x_{A} = 29.271$ 
+		\item $x_{T} = e, x_{A} = 19/7$
+		\item $x_{T} = \sqrt{2}, x_{A} = 1.414$ 
+	\end{enumerate} 
+
+	\item[5.] In some situations, loss-of-significance errors can be avoided by rearranging the function being evaluated, as was done with f(x) in (2.23). Do something similar in the following cases, in some cases using trigonometric identities. In all but case (b), assume x is near 0. 
+	\begin{enumerate}
+		\item[e.] $\frac{\sqrt{4+x} - 2}{x}$ \\
+			We simply multiply the function by $\frac{\sqrt{4+x} + 2}{\sqrt{4+x} + 2}$ then,  \\
+			$\frac{x}{x\sqrt{4+x} + 2x}$ \\ 	
+	\end{enumerate} 
+\end{enumerate} 
+\subsection{Propagation of Error} 
+\begin{enumerate}
+	\item[4.] Find bounds for the error and relative error in approximating $sin(\sqrt{2})$ by $sin(1.414)$. \\ 
+	\item[6.] For the function $f(x) = \sqrt{x}, x > 0$, estimate $f(x_{T}) - f(x_{A})$ and $Rel(f(x_{A}))$. For what values of $x_{T}$, if any, is there a possible problem with loss of accuracy.  \\
+	\item[11.] Let $f(x) = (x-1)(x-2)\ldots(x-n)$. Note that $f(1) = 0$. Estimate $f(1 + 10^{-4})$ by using (2.43) with $x_{T} = 1$, for $n = 2,3, \ldots, 12$. Comment on the implications of this for finding the roots of f(x), say, for the case n = 8. \\
+	Take the derivative of $f(x)$: 
+\end{enumerate} 
+		\begin{figure}[th!]
+		\caption{Graph of $f'(x)$ from $n= 2 \ldots 12$} 
+		\centering
+			\includegraphics[width=3in]{2_3_11.eps} 
+		\end{figure} \\[10mm]
+		$f'(x_{A}) = (-1)^{n-1}(n-1)!(x_{T} - x_{A})$ \\
+		$f'(1 + 10^{-4}) = (-1)^{n-1}(n-1)!10^{-4})$ \\
+		If $n = 8$ then, $f'(1 + 10{-4}) = (-1)^{8-1}(8-1)!$ \\ 
+		$f'(1 + 10^{-4}) = -0.5040$ \\
+		It appears as though even values of n are saddle points for near by roots. It looks like eventually the roots will be even intervals of x. \\ 
+	
+\subsection{Summation} 
+\begin{enumerate}
+	\item[4.] Derive the formula (2.50) for the cases $n = 2, 3,$ and $4$ from the formulas (2.45). \\
+		$S_{2} = (a_{1} + a_{2})(1 + \epsilon_{2})$  \\
+		$S - S_{2} \approx a_{1} + a_{1}\epsilon_{2} -a_{2} + a_{2}\epsilon_{2}$  \\
+		$S_{3} = (a_{3} + S_{2})(1 + \epsilon_{3})$  \\
+		$S - S_{3} \approx -a_{1}(\epsilon_{2} + \epsilon_{3}) -a_{2}(\epsilon_{2} + \epsilon_{3}) -a_{3}(\epsilon_{2} + \epsilon_{3}) -a_{2}\epsilon_{2} -a_{3}\epsilon_{3}$  \\
+		$S_{4} = (a_{4} + S_{3})(1 + \epsilon_{4})$  \\
+		$S - S_{4} \approx -a_{1}(\epsilon_{2} + \epsilon_{3} + \epsilon{4}) -a_{2}(\epsilon_{2} + \epsilon_{3} + \epsilon{4}) -a_{3}(\epsilon_{2} + \epsilon_{3} + \epsilon_{4}) -a_{4}(\epsilon_{2} -a_{3}\epsilon_{3} + \epsilon{4})$  \\
+		
+		
+		
+		
+\end{document}
