@@ -21,35 +21,22 @@ Sec 3.5: 7*, 8 \\
 \end{flushleft}
 \subsection{The Bisection Method} 
 	\begin{enumerate} 
-		\item[10.] Consider the equation $e^{-x} = sin(x)$. Find an interval $[a,b]$ that contains the smallest positive root. Estimate the number of midpoints c needed to obtain an approximate root that is accurate within an error tolerance of $10^{-1)}$. \\
-	Using a bisection algorithm I wrote in Python, I was able to compute the smallest positive root in 22 midpoints. These are my results on the interval $[0,1]$: \\
-0.588562011719,
-0.588531494141,
-0.58854675293, 
-0.588539123535,
-0.588535308838,
-0.588533401489,
-0.588532447815,
-0.588532924652,
-0.588532686234,
-0.588532805443,
-0.588532745838,
-0.588532716036,
-0.588532730937,
-0.588532738388,
-0.588532742113,
-0.588532743976,
-0.588532744907,
-0.588532744441,
-0.588532744208,
-0.588532744092,
-0.588532744034,
+		\item[10.] Consider the equation $e^{-x} = sin(x)$. Find an interval $[a,b]$ that contains the smallest positive root. Estimate the number of midpoints c needed to obtain an approximate root that is accurate within an error tolerance of $10^{-10}$. \\
+        $| \alpha - \epsilon_{n} | \leq \frac{1}{2^{n}}(b - a)$ \\
+        $a = 0, b = 1$ \\
+        $10^{-10} \leq \frac{1}{2^{n}}(1 - a) = \frac{1}{2^{n}}$ \\
+        $\frac{1}{10^{-10}} \leq \frac{1}{2^{n}}$ \\
+        $2^{n} \geq 10^{10}$ \\
+        If we take the log of both sides we obtain \\
+        $n \geq log_{2}(10^{10}) = 33.21$ \\ 
 	\end{enumerate} 
 \subsection{Newton's Method}
 	\begin{enumerate} 
 		\item[9.] Derive formula $(3.15)$. Using it, show $Rel(x_{n}) = [Rel(x_{0})]^{2^{n}}$ \\
 			We want to derive $Rel(x_{n+1}) = [Rel(x_{n})]^{2}, n \geq 0$ where \\
 			$Rel(x_{n}) = \frac{\alpha - x_{n}}{\alpha}$ \\   
+            $Rel(x_{n+1}) = 1 - bx_{n+1}$ \\
+
 			
 	\end{enumerate} 
 			
@@ -89,11 +76,10 @@ Sec 3.5: 7*, 8 \\
 		$x = x + cf(x) \equiv g(x)$ \\
         Our equation is \\
         $x^{3} - 5 = 0$ \\
-        With $x_{n+1} = x_{n} + cf(x_{n})$ our iteration methods are \\
-        I1: $x_{n+1} = \frac{5}{x_{n}^{2}}$ \\
-        I2: $x_{n+1} = \frac{1}{3}(x - \frac{5}{x})$ \\
-        In order to test convergence we take $g'(x)$ of each iteration method. \\
-        
+        With $x_{n+1} = x_{n} + cf(x_{n})$ we can define \\
+        $c = \frac{1}{f'(x)}$ \\
+        $c = \frac{1}{3x^{2}}$ \\ 
+    \end{enumerate}  
 \subsection{Ill-behaving Rootfinding Problems}
 	\begin{enumerate}
 		\item[7.] Consider the polynomial $f(x) = x^{5} - 300x^{2} - 126x + 5005,$ which has a root $\alpha = 5$. Also consider the perturbed function \\
