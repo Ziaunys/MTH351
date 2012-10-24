@@ -87,7 +87,13 @@ Sec 3.5: 7*, 8 \\
 	\begin{enumerate}
 		\item[9.] Consider the rootfinding problem $f(x) = 0$ with root $\alpha$, with $f'(x) \neq 0$. Convert it to the fixed-point problem \\
 		$x = x + cf(x) \equiv g(x)$ \\
-		
+        Our equation is \\
+        $x^{3} - 5 = 0$ \\
+        With $x_{n+1} = x_{n} + cf(x_{n})$ our iteration methods are \\
+        I1: $x_{n+1} = \frac{5}{x_{n}^{2}}$ \\
+        I2: $x_{n+1} = \frac{1}{3}(x - \frac{5}{x})$ \\
+        In order to test convergence we take $g'(x)$ of each iteration method. \\
+        
 \subsection{Ill-behaving Rootfinding Problems}
 	\begin{enumerate}
 		\item[7.] Consider the polynomial $f(x) = x^{5} - 300x^{2} - 126x + 5005,$ which has a root $\alpha = 5$. Also consider the perturbed function \\
