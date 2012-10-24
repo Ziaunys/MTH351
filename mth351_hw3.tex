@@ -6,7 +6,7 @@
 \usepackage{float}
 \linespread{1.6}  % double spaces lines
 \usepackage[left=1in,top=1in,right=1in,bottom=1in,nohead]{geometry}
-\setcounter{section}{2}
+\setcounter{section}{3}
 \begin{document}
 \begin{flushright}
 \end{flushright}
@@ -22,5 +22,79 @@ Sec 3.5: 7*, 8 \\
 \subsection{The Bisection Method} 
 	\begin{enumerate} 
 		\item[10.] Consider the equation $e^{-x} = sin(x)$. Find an interval $[a,b]$ that contains the smallest positive root. Estimate the number of midpoints c needed to obtain an approximate root that is accurate within an error tolerance of $10^{-1)}$. \\
+	Using a bisection algorithm I wrote in Python, I was able to compute the smallest positive root in 22 midpoints. These are my results on the interval $[0,1]$: \\
+0.588562011719,
+0.588531494141,
+0.58854675293, 
+0.588539123535,
+0.588535308838,
+0.588533401489,
+0.588532447815,
+0.588532924652,
+0.588532686234,
+0.588532805443,
+0.588532745838,
+0.588532716036,
+0.588532730937,
+0.588532738388,
+0.588532742113,
+0.588532743976,
+0.588532744907,
+0.588532744441,
+0.588532744208,
+0.588532744092,
+0.588532744034,
+	\end{enumerate} 
+\subsection{Newton's Method}
+	\begin{enumerate} 
+		\item[9.] Derive formula $(3.15)$. Using it, show $Rel(x_{n}) = [Rel(x_{0})]^{2^{n}}$ \\
+			We want to derive $Rel(x_{n+1}) = [Rel(x_{n})]^{2}, n \geq 0$ where \\
+			$Rel(x_{n}) = \frac{\alpha - x_{n}}{\alpha}$ \\   
+			
+	\end{enumerate} 
+			
+\subsection{Secant Method} 
+	\begin{enumerate} 
+		\item[8.] Write formula $(3.28)$ as $\alpha - x_{n+1} \approx M(\alpha - x_{n})(\alpha - x_{n-1}), n \geq 0$ \\
+		with M defined in $3.21)$. Then multiply both sides by M, obtaining \\
+		$| M(\alpha - x_{n+1}) | \approx | M(\alpha - x_{n}) | | M(\alpha - x_{n-1})|$ \\
+		Let $B_{n} = | M(\alpha - x_{n}) |, n \geq 0$. To have $x_{n}$ converge to $\alpha$, we must have $B_{n}$ converge to 0. The above formula yields \\
+		$B_{n+1} \approx B_{n}*B_{n-1}$ \\
+		For simplicity, assume $B_{0} = B_{1} = \delta$ \\
+		\begin{enumerate}
+			\item Compute approximate values of $B_{2}, B_{3}, B_{4}, B_{5}, B_{6}, B_{7}$ in terms of $\delta$ \\
+			$B_{2} = \delta^{2}$ \\
+			$B_{3} = \delta^{2}*\delta^{1} = \delta^{3}$ \\
+			$B_{4} = \delta^{3}*\delta^{2} = \delta^{5}$ \\
+			$B_{5} = \delta^{5}*\delta^{3} = \delta^{8}$ \\
+			$B_{6} = \delta^{8}*\delta^{5} = \delta^{13}$ \\
+			$B_{7} = \delta^{13}*\delta^{8} = \delta^{21}$ \\
+			
+		\item If we write $B_{n} = \delta^{q_{n}}, \geq 0$, give a formula for $q_{n+1}$ in terms of $q_{n-1}$ and $q_{n}$. What are $q_{0}$ and $q_{1}$? \\
+			$q_{n+1} = q_{n} + q_{n-1},$    $q_{0} = q_{1} = 1$ \\
+			This equation represents a recurrence relation between $q_{n+1}, q_{n},$ and $q_{n-1}$. \\
+			\item Experimentally, confirm that \\
+			$q_{n} \approx \frac{1}{\sqrt{5}}r^{n+1} = \frac{1}{\sqrt{5}}(1.618)^{n+1}$ \\
+			for larger values of $n$, say, $n \geq 4$. The number $r$ was used in $(3.30)$. The numbers \{$q_{n}$\} are called Fibonacci numbers. The number $r$ is called the golden mean.
+			\item Using $(c)$, show that \\
+			$\frac{B_{n+1}}{B_{n}^{r}}$ \\
+			is approximately constant. Find the constant. This result can be used to construct a proof of $(3.30)$ 
+			The ratio between each $n$ and $n+1$ Fibonacci number is $r$ and equal to our golden mean. For example: \\
+			$\frac{B_{4+1}}{B_{4}} = 8.02391/4.95915 $ is $\approx 1.618$. 
+		\end{enumerate} 
+	\end{enumerate} 
+\subsection{Fixed Point Iteration}
+	\begin{enumerate}
+		\item[9.] Consider the rootfinding problem $f(x) = 0$ with root $\alpha$, with $f'(x) \neq 0$. Convert it to the fixed-point problem \\
+		$x = x + cf(x) \equiv g(x)$ \\
+		
+\subsection{Ill-behaving Rootfinding Problems}
+	\begin{enumerate}
+		\item[7.] Consider the polynomial $f(x) = x^{5} - 300x^{2} - 126x + 5005,$ which has a root $\alpha = 5$. Also consider the perturbed function \\
+		$F_{\epsilon}(x) = f(x) + \epsilon x^{5} = (1 + \epsilon)x^{5} - 300x^{2} - 126x + 5005$ \\
+		with $\epsilon$ being a small number. Letting $\alpha(\epsilon)$ denote the perturbed root of $F_{\epsilon}(x) = 0$ corresponding to $\alpha(0) = 5$, estimate $\alpha(\epsilon) - 5$. Is finding $\alpha = 5$ for $f(x) = 0$ an unstable rootfinding problem? \\
+		$\alpha(\epsilon) - 5 \approx 3125\epsilon,$ This problem is an unstable problem due to the large coefficient of $\epsilon$. \\ 
+	\end{enumerate} 	
+		
 			
 \end{document}
