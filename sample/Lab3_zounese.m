@@ -48,6 +48,12 @@ newton((x^5 - x^4 + x -1), (5*x^4 - 4*x^3 + 1), 1000000, 10^-6, 100)
 % more accurate approximations of the roots in that it converges at a quadratic 
 % rate. 
 
+% c. The number of iterations can be calculated by the following method: 
+% (1/2)^n * 1*10^6  <= 1.3 * 10^-12 
+% When we estimate n iterations for Newton's method we get n = 67. For the
+% bisection method we get n = 60. So, in this situation bisection is actually
+% more efficient.
+
 % 3. 
 
 secant((x^5 - x^4 + x -1), 0, 3, 10^-6, 100)
