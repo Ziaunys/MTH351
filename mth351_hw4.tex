@@ -1,0 +1,62 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{amsmath} % just math
+\usepackage{amssymb} % allow blackboard bold (aka N,R,Q sets)
+\usepackage{ulem}
+\usepackage{graphicx}
+\usepackage{float}
+\linespread{1.6}  % double spaces lines
+\usepackage[left=1in,top=1in,right=1in,bottom=1in,nohead]{geometry}
+\setcounter{section}{4}
+\begin{document}
+\begin{flushright}
+\end{flushright}
+\begin{flushleft}
+\textbf{Eric Zounes} \\
+\today \\ 
+Sec 4.1: 8a*b, 11a*b, 12a*b, 14, 22, 28, 32 \\
+Sec 4.2: 14, 18* \\
+Sec 4.3: 1, 10*, 11 \\
+\end{flushleft}
+\subsection{Polynomial Interpolation} 
+	\begin{enumerate}
+		\item[8.] Using $(4.6)$, find the polynomial $P_{2}(x)$ that interpolates the following data. In each case, simplify $(4.6)$ as much as possible. \\
+		\begin{enumerate}
+			\item ${(0,1),(1,2),(2,3)}$ \\
+			$P_{2}(x) = y_{0}L_{0}(x) + y_{1}L_{1}(x) + y_{2}L_{2}(x)$ \\
+			$(1)\frac{(x - 1)(x - 2)}{(0 - 1)(0 - 2)} + (2)\frac{(x - 0)(x - 2)}{(1 - 0)(1 - 2)} +  (3)\frac{(x - 0)(x - 1)}{(2 - 0)(2 - 0)} = $ \\
+		\end{enumerate} 
+		\item \begin{enumerate} 
+			\item Prove that there is only one polynomial $P_{3}(x)$ among all polynomials of degree $\leq 3$ that satisfy the interpolating conditions. \\ 
+			$P_{3}(x_{i}) = y_{i}  = 0,1,2,3$ \\
+			If we interpolate $n + 1$ points with a polynomial $P_{3}$ there must be $n + 1$ points wwhich would be $n = 4$ In order to proof its uniqueness let us assume that there exists another polynomial exist  $Q_{3}$. If these polynomials are truely different then the difference will equal some other polynomial. This polynomial remainder will be at most $n$ degrees. If both $P_{3} and Q_{3}$ interpolate through the same data points, then at each point the remainder polynomial will be $R(x_{i}) = P_{3}(x_{i}) - Q_{3}(x_{i}) = 0$. This means that there are $n + 1$ roots for $n + 1$ points which leads us to a contradiction because we know that $n$ degree polynomials have $n$ roots. If the remainder is $0$ we then know $P_{3} and Q_{3}$ are the same.  
+		\end{enumerate} 
+		\item[11.] \begin{enumerate} 
+			\item For $n = 3$, explains why \\
+				$L_{0}(x) + L_{1}(x) + L_{2}(x) + L_{3}(x) = 1$ \\
+				If we interpolate the function $f(x) = 1$ we get \\
+				$P(x) = \sum_{i=1}^{n}f(x_{i})L_{i}(x) = \sum_{i=1}^{n} L_{k}(x)$ \\
+				If $P(x)$ is a $0$ degree polynomial then it can be interpolated by $P(x) = 1$ \\
+				This means that $P(x) = 1 = \sum_{i=1}^{n} L_{k}(x)$  because the interpolating polynomial is unique. When the Lagrange polynomial is interpolated, it will evaluate the Nth term to 1 if $x_{n} = L_{n}$  \\		
+		\end{enumerate} 
+		
+		
+\subsection{Error in Polynomial Interpolation} 
+	\begin{enumerate} 
+		\item[18.] Consider the proof of the error formula for linear interpolation \\
+			$f(x) - P_{1}(x) = \frac{(x - x_{0})(x - x_{1})}{2}f''(c)$ \\
+		with $min {x_{0}, x_{1}, x} \leq c \leq max {x_{0}, x_{1}, x} $. From the construction of $P_{1}(x)$, error formula is clearly true if $x = x_{0}$ or $x = x_{1}$. Thus, we consider only the case $x \neq x_{0}, x_{1}$. Introduce \\
+	
+
+	\end{enumerate}	
+
+\subsection{Interpolation using spline functions} 
+	\begin{enumerate} 
+		\item[10.] Is the following function a cubic spline on the interval $0 \leq x \leq 2$? \\
+			$s(x) =  (x - 1)^{3}, 2(x - 1)^{3}, 0 \leq x \leq 1, 1 \leq x \leq 2$ \\
+			$s'(x) = 3(x - 1)^{2}, 6(x - 1)^{2} = {3,0}, {0,6}$  \\ 
+			$s''(x) = 6(x - 1), 12(x - 1) = {6,0}, {0, 12}$ \\
+		
+			
+	\end{enumerate}
+			
+\end{document}
