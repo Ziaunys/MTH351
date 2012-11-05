@@ -36,6 +36,14 @@ xcheb(i) = (a+b)/2 + (b-a)/2 * cos( (i-.5)*pi/K);
 end
 ycheb = f(xcheb);
 
+PNcheb = polyfit(xcheb, ycheb, K);
+vcheb = polyval(PNcheb, t) 
+cheberr = norm(f(t)-vcheb,inf) 
+
+figure; 
+plot(xcheb,ycheb, t, f(t), '-', t, vcheb, '--') 
+title(sprintf('f(t) and P_{11}(t), cheb err %g', cheberr))
 % 4. Repeat 1, 2, and 3 with N = 20 and N = 50. Explain what behavior you observe. 
+
 
 
