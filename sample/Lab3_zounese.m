@@ -13,10 +13,10 @@ bisect((x^5 - x^4 + x -1), 0.5, 2, 10^-6, 100)
 bisect((x^5 - x^4 + x -1), 0.9, 1.2, 10^-6, 100)
 
 
-%  a. The second interval is half the distance of the first so the bisection i
+% a. The second interval is half the distance of the first so the bisection 
 % algorithm would take one less iteration due to bisection halving the interval
-% at each step. As the interval increases by twice the amount, it will take one 
-% additional iteration due to logarithmic run time. 
+% at each step. As the interval increases by twice the amount, it will take one
+%  additional iteration. 
 
 % b. Analytically we know that the algorithm will choose either the left or 
 % right side of the interval. This decision is completely agnostic to the 
@@ -43,16 +43,10 @@ newton((x^5 - x^4 + x -1), (5*x^4 - 4*x^3 + 1), 1000000, 10^-6, 100)
 % a. Newton is much better in most situations. It's most effective when x0 is 
 % near the root. 
 
-% b. For guesses near the actual root, it makes more sense to use an error 
+% b. For guesses near the actual root, it makes more sense to use an error i
 % tolerance that is twice the magnitude as bisection. Newton tends to compute
-% more accurate approximations of the roots in that it converges at a quadratic 
+% more accurate approximations of the roots in that it converges at a quadratic
 % rate. 
-
-% c. The number of iterations can be calculated by the following method: 
-% (1/2)^n * 1*10^6  <= 1.3 * 10^-12 
-% When we estimate n iterations for Newton's method we get n = 67. For the
-% bisection method we get n = 60. So, in this situation bisection is actually
-% more efficient.
 
 % 3. 
 
@@ -62,12 +56,11 @@ secant((x^5 - x^4 + x -1), 0.5, 2, 10^-6, 100)
 
 secant((x^5 - x^4 + x -1), 0.9, 1.2, 10^-6, 100)
 
-% a. When the interval begins closer to the actual root,  the secant method 
-% is more effective than bisection. It takes roughly 11 less iterations, 
-% however, it takes 4 iterations more than Newton's method. 
+% a. When the interval begins closer to the actual root,  the secant method is
+%  more effective than bisection. It takes roughly 11 less iterations, however,
+% it takes 4 iterations more than Newton's method. 
 
-% b. The size of the interval affects bisection significantly more than the 
-% secant method. 
+% b. The size of the interval affects bisection significantly more than the secant method. 
 
 
 % 4. The error in the roots makes these algorithms unstable in that 
